@@ -10,18 +10,15 @@
         <link rel="icon" href="../../favicon.ico">
 
         <title><?= $title ?></title>
-
+        <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
 
         <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-theme.min.css') ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
 
 
-        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>

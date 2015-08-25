@@ -59,3 +59,4 @@ $route['^(logout)'] = "compte/logout";
 $route['^(prochaines_ventes)'] = "secured/prochaines_ventes";
 $route['^(produits_phares)'] = "secured/produits_phares";
 $route['^(newsletter)'] = "secured/newsletter";
+$route['^(subscribe_newsletter)'] = "secured/subscribe_newsletter";

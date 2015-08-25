@@ -2,16 +2,17 @@
 
 
 <div>
-    <br><h2>Connexion</h2><br>
+    
     <?php echo $this->session->flashdata('msg'); ?>
     <div class="container">
         <div class="row">
-            <div class="bloc_form_connex">
+            
                 <?php
-                $attributes = array("class" => "form-horizontal", "id" => "loginform", "name" => "loginform");
+                    $attributes = array("class" => "form-horizontal", "id" => "loginform", "name" => "loginform");
                 echo form_open("login", $attributes);
                 ?>
                 <fieldset>
+                    <h2>Connexion</h2><br>
                     <div class="form-group">
                         <div class="row colbox">
                             <div class="col-lg-4 col-sm-4">
@@ -39,15 +40,13 @@
                    
 
                     <div class="form-group">
-                        <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="col-lg-12 col-sm-12">
                             <input id="btn_login" name="btn_login" type="submit" class="btn btn-success" value="Connexion" />
                             <input id="btn_cancel" name="btn_cancel" type="reset" class="btn btn-default" value="Annuler" />
                         </div>
                     </div>
                 </fieldset>
                 <?php echo form_close(); ?>
-
-            </div>
 
         </div>
     </div>

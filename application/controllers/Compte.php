@@ -43,8 +43,8 @@ class Compte extends CI_Controller {
                     $sessiondata = array(
                         'login' => $username,
                         'is_logged_in' => true,
-                        'email' => $usr_result['email'],
-                        'user_id' => $usr_result['id']
+                        'email' => $mail,
+                        'user_id' => $last_insert_id
                     );
                     $this->session->set_userdata($sessiondata);
                     redirect('signup');

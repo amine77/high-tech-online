@@ -30,8 +30,8 @@ class user_model extends CI_Model {
     }
 
     function get_user_by_id($user_id) {
-        $sql = "SELECT * FROM users WHERE user_id = '" . $user_id . "' ";
-        $query = $this->db->query($sql);
+        $this->db->where('id', $user_id);
+        $query = $this->db->get('users');
         return $query->row_array();
     }
 
@@ -42,6 +42,34 @@ class user_model extends CI_Model {
             return $query->row_array();
         } else {
             return false;
+        }
+    }
+
+    function subscribe_newsletter($user_id) {
+        $data = array(
+            'in_newsletter' => 1
+        );
+
+        $this->db->where('id', $user_id);
+        if ($this->db->update('users', $data)) {
+
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    function unsubscribe_newsletter($user_id) {
+        $data = array(
+            'in_newsletter' => 0
+        );
+
+        $this->db->where('id', $user_id);
+        if ($this->db->update('users', $data)) {
+
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 

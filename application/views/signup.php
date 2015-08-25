@@ -2,7 +2,6 @@
 
 
 <div>
-    <br><h2>Inscription</h2><br>
     <?php echo $this->session->flashdata('msg'); ?>
     <div class="container">
         <div class="row">
@@ -12,6 +11,7 @@
                 echo form_open("signup", $attributes);
                 ?>
                 <fieldset>
+                    <h2>Inscription</h2><br>
                     <div class="form-group">
                         <div class="row colbox">
                             <div class="col-lg-4 col-sm-4">
