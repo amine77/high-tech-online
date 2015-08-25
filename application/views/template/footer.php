@@ -1,7 +1,8 @@
 
-<hr>
 
-<footer>
+
+<footer class="footer">
+    <hr>
     <p>&copy; high-tech online 2015</p>
 </footer>
 

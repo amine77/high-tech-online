@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>High-tech online</title>
+        <title><?= $title ?></title>
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -41,17 +41,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">High-tech online</a>
+                    <a class="navbar-brand" href="<?= base_url('') ?>">Hi-tech online</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="active"><a href="<?= base_url('/') ?>">Home</a></li>
+                        <li><a href="<?=  base_url('prochaines_ventes') ?>">Prochaines Ventes</a></li>
+                        <li><a href="<?=  base_url('produits_phares') ?>">Produits phares</a></li>
+                        <li><a href="<?=  base_url('newsletter') ?>">Newsletter</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="../navbar/">Connexion</a></li>
-                        <li><a href="../navbar-static-top/">Inscription</a></li>
+                        
+                            <?php
+                            if ($this->session->userdata('login')) {
+                                echo '<li><a href="#">Bonjour ' . $_SESSION['login'] . '</a></li>';
+                                echo '<li><a href="' . site_url('logout') . '">Déconnexion</a></li>';
+                            } else {
+                                echo '<li> <a href="' . site_url('login') . '">Connexion</a></li><li><a href="' . site_url('signup') . '">Inscription</a></li>';
+                            }
+                            ?>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

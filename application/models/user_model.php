@@ -3,47 +3,39 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class user_model extends CI_Model
-{
+class user_model extends CI_Model {
 
-    function __construct()
-    {
+    function __construct() {
         // Call the Model constructor
         parent::__construct();
     }
-    
 
-    function get_all()
-    {
+    function get_all() {
         $sql = "SELECT * FROM users WHERE role_id =3";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
-    function get_roles_by_user($user_id)
-    {
+    function get_roles_by_user($user_id) {
         $sql = "SELECT * FROM role, users where users.role_id = role.role_id and user_id = '" . $user_id . "' ";
         $query = $this->db->query($sql)->row();
         return $query;
     }
 
     //get the username & password from tbl_usrs
-    function get_user($usr, $pwd)
-    {
-        $sql = "SELECT * FROM users, role WHERE role.role_id = users.role_id AND login = '" . $usr . "' AND password = '" . sha1($pwd) . "' ";
+    function get_user($usr, $pwd) {
+        $sql = "SELECT * FROM users WHERE username = '" . $usr . "' AND password = '" . sha1($pwd) . "' ";
         $query = $this->db->query($sql);
         return $query->row_array();
     }
 
-    function get_user_by_id($user_id)
-    {
+    function get_user_by_id($user_id) {
         $sql = "SELECT * FROM users WHERE user_id = '" . $user_id . "' ";
         $query = $this->db->query($sql);
         return $query->row_array();
     }
 
-    function get_user_by_mail($email)
-    {
+    function get_user_by_mail($email) {
         $this->db->where('mail', $email);
         $query = $this->db->get('users');
         if ($query->num_rows() > 0) {
@@ -53,29 +45,21 @@ class user_model extends CI_Model
         }
     }
 
-
-    function signup_user($user_name, $user_surname, $login, $password, $born_at, $phone, $mobile, $mail)
-    {
+    function signup_user($username, $password, $mail) {
 
         $data = array(
-            'user_name' => $user_name,
-            'user_surname' => $user_surname,
-            'login' => $login,
+            'username' => $username,
             'password' => sha1($password),
-            'born_at' => $born_at,
-            'phone' => $phone,
-            'mobile' => $mobile,
-            'mail' => $mail,
-            'role_id' => 3   //par défaut les utilisateurs qui se connectent auront ROLE_USER
+            'email' => $mail
         );
 
         $this->db->insert('users', $data);
-        return ($this->db->affected_rows() != 1) ? false : true; //pour vérifier si l'insertion s'est bien déroulée.
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
 
-    function mail_exists($key)
-    {
-        $this->db->where('mail', $key);
+    function mail_exists($key) {
+        $this->db->where('email', $key);
         $query = $this->db->get('users');
         if ($query->num_rows() > 0) {
             return true;
@@ -84,8 +68,7 @@ class user_model extends CI_Model
         }
     }
 
-    function delete_user($id)
-    {
+    function delete_user($id) {
         $this->db->delete('users', array('user_id' => $id));
     }
 
