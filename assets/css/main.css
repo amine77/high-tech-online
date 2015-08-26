@@ -1,6 +1,11 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
     padding-top: 20px;
-    padding-bottom: 20px;
+    /*padding-bottom: 60px;*/
+    margin-bottom: 60px;
 }
 
 /* Main marketing message and sign up button */

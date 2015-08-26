@@ -60,3 +60,4 @@ $route['^(prochaines_ventes)'] = "secured/prochaines_ventes";
 $route['^(produits_phares)'] = "secured/produits_phares";
 $route['^(newsletter)'] = "secured/newsletter";
 $route['^(subscribe_newsletter)'] = "secured/subscribe_newsletter";
+$route['^(view_event)/(:any)'] = "secured/view_event/$0";

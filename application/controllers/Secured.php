@@ -16,11 +16,22 @@ class Secured extends CI_Controller {
         }
 
         $this->load->model('user_model');
+        $this->load->model('event_model');
     }
 
     public function prochaines_ventes() {
         $data['title'] = 'Prochaines ventes';
+        $data['prochaines_ventes'] = $this->event_model->get_upcoming_sales();
         $data['view'] = 'prochaines_ventes';
+        $this->load->view('template/layout', $data);
+    }
+    public function view_event($id=''){
+        $id= $this->uri->segment(2);
+        $data['title'] = 'Détail de l\'événement';
+        $data['event'] = $this->event_model->get_event_by_id($id);
+        $data['articles']= $this->event_model->get_articles_by_event($id);
+        $data['view'] = 'event';
+        $data['id'] = $id;
         $this->load->view('template/layout', $data);
     }
 

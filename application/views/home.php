@@ -10,32 +10,30 @@
 
         <h3>Bienvenue <?= $_SESSION['login'] ?></h3>
     </div>
-    <div class="row">
-        <h3>Liste des événements :</h3><br>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Actuellement</h3>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Prochains événements</h3>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
 
-        </div>
-    </div> 
+
+
+    <h2>Ventes en cours</h2>
+
+
+    <?php if (isset($ventes_en_cours) && is_array($ventes_en_cours) && count($ventes_en_cours)) { ?>
+
+        <?php foreach ($ventes_en_cours as $vente_en_cours) {
+            ?>
+            <div class="prochaine_vente">
+                <h3><a href="<?= base_url('view_event/' . $vente_en_cours['id']) ?>"><strong><?= $vente_en_cours['title'] ?></strong></a></h3>
+                <strong>Début </strong>:  <?= $vente_en_cours['date_debut'] ?>&nbsp;&nbsp;<strong>Fin </strong>: <?= $vente_en_cours['date_fin'] ?>
+
+            </div>
+        <?php }
+    } else {
+        ?>
+
+        <h5>Aucun événement trouvé pour l'instant</h5>
+    <?php } ?>
+
+
+
 
 
 <?php } ?>

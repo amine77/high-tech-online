@@ -96,6 +96,16 @@ class user_model extends CI_Model {
         }
     }
 
+    function username_exists($username) {
+        $this->db->where('username', $username);
+        $query = $this->db->get('users');
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function delete_user($id) {
         $this->db->delete('users', array('user_id' => $id));
     }

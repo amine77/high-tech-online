@@ -7,6 +7,7 @@ class Compte extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('event_model');
     }
 
     public function signup() {
@@ -30,6 +31,14 @@ class Compte extends CI_Controller {
                     $this->session->set_flashdata('msg', '<div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                     Ce mail est déjà pris par un autre utilisateur. Veuillez choisir un autre !
+                  </div>');
+                    redirect('signup');
+                }
+
+                if ($this->user_model->username_exists($username)) {
+                    $this->session->set_flashdata('msg', '<div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    Ce nom d\'utilisateur est déjà pris. Veuillez choisir un autre !
                   </div>');
                     redirect('signup');
                 }
@@ -69,6 +78,7 @@ class Compte extends CI_Controller {
 
             $data['title'] = 'Connexion';
             $data['view'] = 'connexion';
+//            $data['ventes_en_cours'] = $this->event_model->get_current_sales();
             $this->load->view('template/layout', $data);
         } else {
 
