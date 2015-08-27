@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 26 Août 2015 à 16:57
+-- Généré le :  Jeu 27 Août 2015 à 02:56
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -120,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `date_debut`, `date_fin`, `created_at`, `updated_at`) VALUES
-(1, 'événement un', '2015-08-26 10:37:18', '2015-08-26 16:30:00', '2015-08-26 08:29:03', NULL),
-(2, 'événement deux', '2015-08-26 16:30:23', '2015-08-26 16:59:59', '2015-08-26 08:29:03', NULL),
+(1, 'événement un', '2015-08-27 00:19:18', '2015-08-27 15:50:00', '2015-08-26 18:29:03', NULL),
+(2, 'événement deux', '2015-08-27 01:18:23', '2015-08-27 17:20:59', '2015-08-26 08:29:03', NULL),
 (3, 'événement trois', '2015-08-27 09:14:32', '2015-08-27 16:24:38', '2015-08-26 08:36:15', NULL),
 (4, 'événement quatre', '2015-08-28 12:13:31', '2015-08-28 18:17:13', '2015-08-26 08:36:15', NULL);
 
@@ -236,4 +236,3 @@ ALTER TABLE `lignes_commandes`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
