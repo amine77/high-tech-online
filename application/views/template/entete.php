@@ -40,41 +40,41 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?= base_url('') ?>">Hi-tech online
-                       le coin des ventes privées <div style="position: absolute">
-                           
-                        </div></a>
+                    <a class="navbar-brand" href="<?=  base_url() ?>">
+                        <blink><img src="<?= base_url('assets/img/logo') ?>.png" id="image-neon" height="50"></blink>
+                        
+                    </a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?= base_url('/') ?>">Home</a></li>
-                        <li><a href="<?=  base_url('prochaines_ventes') ?>">Prochaines Ventes</a></li>
-                        <li><a href="<?=  base_url('produits_phares') ?>">Produits phares</a></li>
-                        <li><a href="<?=  base_url('newsletter') ?>">Newsletter</a></li>
+                        <li><a href="<?= base_url('prochaines_ventes') ?>">Prochaines Ventes</a></li>
+                        <li><a href="<?= base_url('produits_phares') ?>">Produits phares</a></li>
+                        <li><a href="<?= base_url('newsletter') ?>">Newsletter</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        
-                            <?php
-                            if ($this->session->userdata('login')) {
+
+                        <?php
+                        if ($this->session->userdata('login')) {
 //                                if ($this->session->has_userdata('articles_in_cart')) {
 //                                    $nb_articles = count($_SESSION['articles_in_cart']);
 //                                }
-                                echo '<li><a href="#">Bonjour ' . $_SESSION['login'] . '</a></li>';
-                                echo '<li><a href="'.  base_url('view_cart').'">Panier</a></li>';
-                                echo '<li><a href="' . site_url('logout') . '">Déconnexion</a></li>';
-                            } else {
-                                echo '<li> <a href="' . site_url('login') . '">Connexion</a></li><li><a href="' . site_url('signup') . '">Inscription</a></li>';
-                            }
-                            ?>
+                            echo '<li><a href="#">Bonjour ' . $_SESSION['login'] . '</a></li>';
+                            echo '<li><a href="' . base_url('view_cart') . '">Panier</a></li>';
+                            echo '<li><a href="' . site_url('logout') . '">Déconnexion</a></li>';
+                        } else {
+                            echo '<li> <a href="' . site_url('login') . '">Connexion</a></li><li><a href="' . site_url('signup') . '">Inscription</a></li>';
+                        }
+                        ?>
                     </ul>   
-                    <?php if(isset($categories) && is_array($categories) && count($categories) >0){ ?>
-                    
-                    <ul class="nav navbar-nav">
-                        <?php foreach ($categories as $catgeorie) {?>
-                        <li><a href="<?= base_url('view_category/'.$catgeorie['id']) ?>"><?=  $catgeorie['title'] ?></a></li>
-                      <?php  }  ?>
-                    </ul>
-                    <?php  }  ?>
+                    <?php if (isset($categories) && is_array($categories) && count($categories) > 0) { ?>
+
+                        <ul class="nav navbar-nav">
+                            <?php foreach ($categories as $catgeorie) { ?>
+                                <li><a href="<?= base_url('view_category/' . $catgeorie['id']) ?>"><?= $catgeorie['title'] ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    <?php } ?>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>

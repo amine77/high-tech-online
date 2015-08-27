@@ -1,0 +1,36 @@
+.navbar-brand {
+	padding: 0 !important;
+}
+
+.navbar-inverse {
+	background-color:#3498db;
+	border-color:#2980b9;
+}
+
+.form-control {
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.btn {
+	border: none !important;
+	border-radius: 0 !important;
+	    padding: 7px 12px !important;
+}
+
+.jumbotron {
+	background:url(../img/bg.jpg);
+	background-size: cover;
+	color: #fff;
+text-align: center;
+    margin-bottom: 0 !important;
+}
+.jumbotron .container{
+background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    margin-top: 110px;
+}
+
+.nav a {
+	color: #fff !important;
+}
