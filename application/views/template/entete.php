@@ -17,9 +17,11 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap-theme.min.css') ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/datepicker3.css') ?>">
 
 
-
+        <script src="<?= base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
+        <script src="<?= base_url('assets/locales/bootstrap-datepicker.fr.min.js') ?>"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -38,7 +40,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?= base_url('') ?>">Hi-tech online</a>
+                    <a class="navbar-brand" href="<?= base_url('') ?>">Hi-tech online
+                       le coin des ventes privées <div style="position: absolute">
+                           
+                        </div></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -51,6 +56,9 @@
                         
                             <?php
                             if ($this->session->userdata('login')) {
+//                                if ($this->session->has_userdata('articles_in_cart')) {
+//                                    $nb_articles = count($_SESSION['articles_in_cart']);
+//                                }
                                 echo '<li><a href="#">Bonjour ' . $_SESSION['login'] . '</a></li>';
                                 echo '<li><a href="'.  base_url('view_cart').'">Panier</a></li>';
                                 echo '<li><a href="' . site_url('logout') . '">Déconnexion</a></li>';

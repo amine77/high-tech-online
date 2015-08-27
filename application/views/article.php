@@ -4,7 +4,7 @@
     }
     #add_to_cart_success , #add_to_cart_failed{
         display: none;
-        font-size: 12px;
+        font-size: 14px;
     }
 </style>
 <script>
@@ -27,20 +27,26 @@ $(function(){
         $("input[type='number']").css("background-color", "pink");
     }); 
     
-    $('#form[name="add-to-cart"]').submit(function (){
+    $('form[name="add-to-cart"]').submit(function (){
         
-        var article_id = <?= $article['id'] ?>, nb_copies = parseInt($('[name="copies"]').val()), prix_unitaire = <?= $article['prix'] ?>;
+        var article_id = <?= $article['id'] ?>, nb_copies = parseInt($('[name="copies"]').val()), prix_unitaire = <?= $article['prix'] ?> , img = '<?= $article['img'] ?>';
+        var name = "<?= $article['name'] ?>";
+        console.log('article_id = ' +article_id);
         $.ajax({
             method:'POST',
             url:'<?= base_url("add_to_cart") ?>',
-            dataType: 'ajax',
-            data:{article_id:article_id, nb_copies : nb_copies, prix_unitaire:prix_unitaire}
+            dataType: 'json',
+            data:{article_id:article_id, nb_copies : nb_copies, prix_unitaire:prix_unitaire, img:img, name:name}
         }).done(function(data){
+            console.log(data);
             if(data.state ==='OK'){
-                     $('#add_to_cart_success').css("display", "inline").delay(7000).fadeOut();
+                     $('#add_to_cart_success').css("display", "inline").delay(6000).fadeOut();
                 }else{
-                     $('#add_to_cart_failed').css("display", "inline").delay(7000).fadeOut();
+                     $('#add_to_cart_failed').css("display", "inline").delay(6000).fadeOut();
                 }
+                setTimeout(function () {
+                    location.href= '<?=  base_url('view_cart')  ?>';
+                }, 6000);
         })
           .fail(function(){
             console.log('erreur ajax');
@@ -54,11 +60,14 @@ $(function(){
 <br><br>
 <div class="row">
     <h4><a href="<?= base_url('view_event_with_cart/'.$event_id) ?>">Revenir à la liste des articles</a></h4><br><br>
+        <center><span id="add_to_cart_success" class="label label-success">Vos articles ont bien ajoutés au panier.</span>
+    <span id="add_to_cart_failed" class="label label-danger">Un problème est survenu, vos articles n'ont pas été ajoutés au panier.</span>
+        </center>
 </div>
 
+
 <div class="row">
-    <span id="add_to_cart_success" class="label label-success">Vos articles ont bien ajoutés au panier.</span>
-    <span id="add_to_cart_failed" class="label label-danger">Un problème est survenu, vos articles n'ont pas été ajoutés au panier.</span>
+  
     <form id="add-to-cart" name="add-to-cart">
         <div class="col-md-4">
             <img src="<?= base_url('assets/img/articles/' . $article['img']) ?>.jpg" height="" width="300px"/>
