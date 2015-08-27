@@ -15,14 +15,14 @@
             <?php foreach ($articles as $article) { ?>
                 <div class="article">
                     <h4><?= $article['name'] ?></h4>
-                    <img src="<?= base_url('assets/img/articles/'.$article['img'] )?>.jpg" height="" width="200px"/><br><br>
+                    <img src="<?= base_url('assets/img/articles/' . $article['img']) ?>.jpg" height="" width="200px"/><br><br>
                     <strong>Description </strong>: <?= $article['description'] ?><br>
                     <strong>Catégorie </strong>: <?= $article['title'] ?><br>
                     <strong>Quantité en Stock </strong>: <?= $article['stock'] ?><br>
                     <strong>Prix </strong>: <?= $article['prix'] ?> €<br>
-                    
+
                 </div>
-            
+
 
             <?php } ?>
 

@@ -17,11 +17,11 @@ class event_model extends CI_Model {
     }
 
     function get_articles_by_event($id) {
-        $sql = "select * from event_article, articles, categories
-        where event_article.article_id = articles.id
-        and categories.id = articles.category_id
-        and articles.actif=1
-        and event_article.event_id=$id";
+        $sql = "select a.id, a.name, a.stock, a.img, a.prix,a.description, c.title from event_article ea, articles a, categories c
+        where ea.article_id = a.id
+        and c.id = a.category_id
+        and a.actif=1
+        and ea.event_id=$id";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

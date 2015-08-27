@@ -3,7 +3,7 @@
 
 <footer class="footer">
     <hr>
-    <p>&copy; high-tech online 2015</p>
+    <p>&copy; hi-tech online 2015</p>
 </footer>
 
 </div><!--/.container-->

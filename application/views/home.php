@@ -21,7 +21,7 @@
         <?php foreach ($ventes_en_cours as $vente_en_cours) {
             ?>
             <div class="prochaine_vente">
-                <h3><a href="<?= base_url('view_event/' . $vente_en_cours['id']) ?>"><strong><?= $vente_en_cours['title'] ?></strong></a></h3>
+                <h3><a href="<?= base_url('view_event_with_cart/' . $vente_en_cours['id']) ?>"><strong><?= $vente_en_cours['title'] ?></strong></a></h3>
                 <strong>Début </strong>:  <?= $vente_en_cours['date_debut'] ?>&nbsp;&nbsp;<strong>Fin </strong>: <?= $vente_en_cours['date_fin'] ?>
 
             </div>

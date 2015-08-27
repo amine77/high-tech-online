@@ -52,6 +52,7 @@
                             <?php
                             if ($this->session->userdata('login')) {
                                 echo '<li><a href="#">Bonjour ' . $_SESSION['login'] . '</a></li>';
+                                echo '<li><a href="'.  base_url('view_cart').'">Panier</a></li>';
                                 echo '<li><a href="' . site_url('logout') . '">Déconnexion</a></li>';
                             } else {
                                 echo '<li> <a href="' . site_url('login') . '">Connexion</a></li><li><a href="' . site_url('signup') . '">Inscription</a></li>';
