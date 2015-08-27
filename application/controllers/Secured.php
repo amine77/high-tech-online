@@ -25,6 +25,7 @@ class Secured extends CI_Controller {
         $data['title'] = 'Prochaines ventes';
         $data['prochaines_ventes'] = $this->event_model->get_upcoming_sales();
         $data['view'] = 'prochaines_ventes';
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -35,6 +36,7 @@ class Secured extends CI_Controller {
         $data['view'] = 'article';
         $data['event_id'] = $event_id;
         $data['article'] = $this->article_model->get_article_by_id($id);
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -103,6 +105,16 @@ class Secured extends CI_Controller {
         echo json_encode($response);
     }
 
+    public function view_category ($id = ''){
+        $id = $this->uri->segment(2);
+        $data['title'] = 'Liste des articles';
+        $data['articles'] = $this->article_model->get_articles_by_category($id);
+        $data['category'] = $this->article_model->get_category_by_id($id);
+        $data['view'] = 'category';
+        $data['id'] = $id;
+        $data['categories'] = $this->article_model->get_all_categories();
+        $this->load->view('template/layout', $data);
+    }
     public function view_event($id = '') {
         $id = $this->uri->segment(2);
         $data['title'] = 'Détail de l\'événement';
@@ -110,6 +122,7 @@ class Secured extends CI_Controller {
         $data['articles'] = $this->event_model->get_articles_by_event($id);
         $data['view'] = 'event';
         $data['id'] = $id;
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -117,6 +130,7 @@ class Secured extends CI_Controller {
         $data['title'] = 'Mon panier';
         //$data['articles_dans_panier']= $this->event_model->get_articles_by_event($id);
         $data['view'] = 'cart';
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -127,12 +141,15 @@ class Secured extends CI_Controller {
         $data['articles'] = $this->event_model->get_articles_by_event($id);
         $data['view'] = 'event_with_cart';
         $data['id'] = $id;
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function produits_phares() {
         $data['title'] = 'Produits phares';
         $data['view'] = 'produits_phares';
+        $data['articles'] = $this->article_model->get_produits_phares();
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -140,6 +157,7 @@ class Secured extends CI_Controller {
         $data['title'] = 'Newsletter';
         $data['view'] = 'newsletter';
         $data['user'] = $this->user_model->get_user_by_id($_SESSION['user_id']);
+        $data['categories'] = $this->article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 

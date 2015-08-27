@@ -40,7 +40,7 @@
 </script>
 
 <h3>Panier</h3>
-<?php var_dump($_SESSION) ?>
+
 <?php if (!$this->session->has_userdata('articles_in_cart')) { ?>
     <h3><span class="alert alert-warning">Votre panier est vide</span></h3>
 
@@ -135,7 +135,7 @@
                             <div class="row colbox">
 
                                 <div class="col-lg-4 col-sm-4">
-                                    <input  required="required" class="form-control" type="text" name="infos" id="infos" placeholder="Informations complémentaires"/>
+                                    <input class="form-control" type="text" name="infos" id="infos" placeholder="Informations complémentaires"/>
 
                                 </div>
                                 <div class="col-lg-4 col-sm-4">

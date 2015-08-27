@@ -67,3 +67,4 @@ $route['^(delete_from_cart)/(:any)'] = "secured/delete_from_cart/$0";
 $route['^(view_event_with_cart)/(:any)'] = "secured/view_event_with_cart/$0";
 $route['^(view_cart)'] = "secured/view_cart";
 $route['^(view_article/(:any)/(:any))'] = "secured/view_article/$0/$1";
+$route['^(view_category)/(:any)'] = "secured/view_category/$0";

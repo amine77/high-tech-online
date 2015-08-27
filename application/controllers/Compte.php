@@ -8,6 +8,7 @@ class Compte extends CI_Controller {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('event_model');
+        $this->load->model('article_model');
     }
 
     public function signup() {
@@ -22,6 +23,7 @@ class Compte extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'un titre';
             $data['view'] = 'signup';
+             $data['categories'] = $this->article_model->get_all_categories();
             $this->load->view('template/layout', $data);
         } else {
 
@@ -79,6 +81,7 @@ class Compte extends CI_Controller {
             $data['title'] = 'Connexion';
             $data['view'] = 'connexion';
 //            $data['ventes_en_cours'] = $this->event_model->get_current_sales();
+             $data['categories'] = $this->article_model->get_all_categories();
             $this->load->view('template/layout', $data);
         } else {
 

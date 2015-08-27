@@ -66,7 +66,15 @@
                                 echo '<li> <a href="' . site_url('login') . '">Connexion</a></li><li><a href="' . site_url('signup') . '">Inscription</a></li>';
                             }
                             ?>
+                    </ul>   
+                    <?php if(isset($categories) && is_array($categories) && count($categories) >0){ ?>
+                    
+                    <ul class="nav navbar-nav">
+                        <?php foreach ($categories as $catgeorie) {?>
+                        <li><a href="<?= base_url('view_category/'.$catgeorie['id']) ?>"><?=  $catgeorie['title'] ?></a></li>
+                      <?php  }  ?>
                     </ul>
+                    <?php  }  ?>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>

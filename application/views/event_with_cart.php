@@ -35,8 +35,12 @@ $(function() {
                 <div class="article">
                     <h4><?= $article['name'] ?></h4>
                     <p class="pull-right">
-                       
-                        <a class="btn btn-success" href="<?= base_url('view_article/' . $article['id']).'/'.$id ?>"  data-confirm="Voulez-vous ajouter cet article à votre panier?" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au panier</a>
+                       <?php  
+                       if($article['stock'] !=0){?>
+                           <a class="btn btn-success" href="<?= base_url('view_article/' . $article['id']).'/'.$id ?>"  data-confirm="Voulez-vous ajouter cet article à votre panier?" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au panier</a>
+                       <?php }else{  ?>
+                        <button class="btn btn-danger" type="button"> Produit indisponible</button>
+                       <?php  }  ?>
                     </p>
                     <img src="<?= base_url('assets/img/articles/' . $article['img']) ?>.jpg" height="" width="200px"/><br><br>
                     <strong>Description </strong>: <?= $article['description'] ?><br>
