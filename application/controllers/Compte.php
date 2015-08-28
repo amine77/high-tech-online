@@ -6,9 +6,9 @@ class Compte extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
-        $this->load->model('event_model');
-        $this->load->model('article_model');
+        $this->load->model('User_model');
+        $this->load->model('Event_model');
+        $this->load->model('Article_model');
     }
 
     public function signup() {
@@ -23,13 +23,13 @@ class Compte extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'un titre';
             $data['view'] = 'signup';
-             $data['categories'] = $this->article_model->get_all_categories();
+             $data['categories'] = $this->Article_model->get_all_categories();
             $this->load->view('template/layout', $data);
         } else {
 
             //validation succeeds
             if ($this->input->post('btn_signup') == "Créer mon compte") {
-                if ($this->user_model->mail_exists($mail)) {
+                if ($this->User_model->mail_exists($mail)) {
                     $this->session->set_flashdata('msg', '<div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                     Ce mail est déjà pris par un autre utilisateur. Veuillez choisir un autre !
@@ -37,7 +37,7 @@ class Compte extends CI_Controller {
                     redirect('signup');
                 }
 
-                if ($this->user_model->username_exists($username)) {
+                if ($this->User_model->username_exists($username)) {
                     $this->session->set_flashdata('msg', '<div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                     Ce nom d\'utilisateur est déjà pris. Veuillez choisir un autre !
@@ -45,7 +45,7 @@ class Compte extends CI_Controller {
                     redirect('signup');
                 }
 
-                $last_insert_id = $this->user_model->signup_user($username, $password, $mail);
+                $last_insert_id = $this->User_model->signup_user($username, $password, $mail);
                 if ($last_insert_id != '') {
 
                     $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Félicitations ! '
@@ -80,15 +80,15 @@ class Compte extends CI_Controller {
 
             $data['title'] = 'Connexion';
             $data['view'] = 'connexion';
-//            $data['ventes_en_cours'] = $this->event_model->get_current_sales();
-             $data['categories'] = $this->article_model->get_all_categories();
+//            $data['ventes_en_cours'] = $this->Event_model->get_current_sales();
+             $data['categories'] = $this->Article_model->get_all_categories();
             $this->load->view('template/layout', $data);
         } else {
 
 
             if ($this->input->post('btn_login') == "Connexion") {
 
-                $usr_result = $this->user_model->get_user($username, $password);
+                $usr_result = $this->User_model->get_user($username, $password);
                 if (count($usr_result) > 0) {
 
                     $sessiondata = array(

@@ -15,17 +15,17 @@ class Secured extends CI_Controller {
             redirect(base_url('login'));
         }
 
-        $this->load->model('user_model');
-        $this->load->model('event_model');
-        $this->load->model('article_model');
-        $this->load->model('command_model');
+        $this->load->model('User_model');
+        $this->load->model('Event_model');
+        $this->load->model('Article_model');
+        $this->load->model('Command_model');
     }
 
     public function prochaines_ventes() {
         $data['title'] = 'Prochaines ventes';
-        $data['prochaines_ventes'] = $this->event_model->get_upcoming_sales();
+        $data['prochaines_ventes'] = $this->Event_model->get_upcoming_sales();
         $data['view'] = 'prochaines_ventes';
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -35,8 +35,8 @@ class Secured extends CI_Controller {
         $data['title'] = 'Détail de l\'article';
         $data['view'] = 'article';
         $data['event_id'] = $event_id;
-        $data['article'] = $this->article_model->get_article_by_id($id);
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['article'] = $this->Article_model->get_article_by_id($id);
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
@@ -63,7 +63,7 @@ class Secured extends CI_Controller {
         $code_postal = $this->input->post('code_postal');
         
         $articles_in_cart = $this->session->userdata('articles_in_cart');
-        if($this->command_model->save($user_id, $montant_total, $rue, $infos, $ville, $code_postal, $articles_in_cart)){
+        if($this->Command_model->save($user_id, $montant_total, $rue, $infos, $ville, $code_postal, $articles_in_cart)){
             $articles_in_cart=array();
             $this->session->set_userdata('articles_in_cart', $articles_in_cart);
             $response = array('state' => 'OK');
@@ -108,63 +108,63 @@ class Secured extends CI_Controller {
     public function view_category ($id = ''){
         $id = $this->uri->segment(2);
         $data['title'] = 'Liste des articles';
-        $data['articles'] = $this->article_model->get_articles_by_category($id);
-        $data['category'] = $this->article_model->get_category_by_id($id);
+        $data['articles'] = $this->Article_model->get_articles_by_category($id);
+        $data['category'] = $this->Article_model->get_category_by_id($id);
         $data['view'] = 'category';
         $data['id'] = $id;
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
     public function view_event($id = '') {
         $id = $this->uri->segment(2);
         $data['title'] = 'Détail de l\'événement';
-        $data['event'] = $this->event_model->get_event_by_id($id);
-        $data['articles'] = $this->event_model->get_articles_by_event($id);
+        $data['event'] = $this->Event_model->get_event_by_id($id);
+        $data['articles'] = $this->Event_model->get_articles_by_event($id);
         $data['view'] = 'event';
         $data['id'] = $id;
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function view_cart() {
         $data['title'] = 'Mon panier';
-        //$data['articles_dans_panier']= $this->event_model->get_articles_by_event($id);
+        //$data['articles_dans_panier']= $this->Event_model->get_articles_by_event($id);
         $data['view'] = 'cart';
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function view_event_with_cart($id = '') {
         $id = $this->uri->segment(2);
         $data['title'] = 'Détail de l\'événement';
-        $data['event'] = $this->event_model->get_event_by_id($id);
-        $data['articles'] = $this->event_model->get_articles_by_event($id);
+        $data['event'] = $this->Event_model->get_event_by_id($id);
+        $data['articles'] = $this->Event_model->get_articles_by_event($id);
         $data['view'] = 'event_with_cart';
         $data['id'] = $id;
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function produits_phares() {
         $data['title'] = 'Produits phares';
         $data['view'] = 'produits_phares';
-        $data['articles'] = $this->article_model->get_produits_phares();
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['articles'] = $this->Article_model->get_produits_phares();
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function newsletter() {
         $data['title'] = 'Newsletter';
         $data['view'] = 'newsletter';
-        $data['user'] = $this->user_model->get_user_by_id($_SESSION['user_id']);
-        $data['categories'] = $this->article_model->get_all_categories();
+        $data['user'] = $this->User_model->get_user_by_id($_SESSION['user_id']);
+        $data['categories'] = $this->Article_model->get_all_categories();
         $this->load->view('template/layout', $data);
     }
 
     public function subscribe_newsletter() {
         $email = $this->input->post('email');
         $response = array();
-        if ($this->user_model->subscribe_newsletter($_SESSION['user_id'])) {
+        if ($this->User_model->subscribe_newsletter($_SESSION['user_id'])) {
             $response = array('state' => 'OK');
         } else {
             $response = array('state' => 'FAILED');
@@ -176,7 +176,7 @@ class Secured extends CI_Controller {
     public function unsubscribe_newsletter() {
         $email = $this->input->post('email');
         $response = array();
-        if ($this->user_model->unsubscribe_newsletter($_SESSION['user_id'])) {
+        if ($this->User_model->unsubscribe_newsletter($_SESSION['user_id'])) {
             $response = array('state' => 'OK');
         } else {
             $response = array('state' => 'FAILED');
