@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 28 Août 2015 à 01:27
+-- Généré le :  Ven 28 Août 2015 à 09:21
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -51,7 +51,7 @@ INSERT INTO `articles` (`id`, `name`, `description`, `img`, `prix`, `stock`, `ca
 (1, 'Volkswagen Tiguan', 'Marque : 	Volkswagen\r\nModèle : 	Tiguan\r\nAnnée-modèle : 	2011\r\nKilométrage : 	210 000 KM\r\nCarburant : 	Diesel\r\nBoîte de vitesse : 	Manuelle\r\nRéférence : 	rs2074278321', 'volkswagen-tiguan', 12350, 1, 1, '2015-08-26 07:48:47', '2015-08-27 21:50:12', 1),
 (2, 'Audi q5', 'Marque : 	Audi\r\nModèle : 	Q5\r\nAnnée-modèle : 	2014\r\nKilométrage : 	20 250 KM\r\nCarburant : 	Diesel\r\nBoîte de vitesse : 	Automatique', 'audi-q5', 56500, 5, 1, '2015-08-26 07:48:47', NULL, 1),
 (5, '600 CBR Honda', 'Vends 600 CBR de 97 pc31A avec 59800km.\r\nJe possède cette moto depuis 7 ans, très bien entretenue et aucun soucis avec. Cet été j''ai fait 3 journées pistes (environ 400km), j''ai chuté côté gauche au circuit carole, la fourche présente une légère déformation et la fixation avant gauche du moteur est cassée (voir photo) peut être ressoudée par un pro. Lors de cette chute la moto avait des polys, donc les carénages d''origine ne sont pas cassé mais ne sont pas nickel nonplus.\r\nLe moteur tourne parfaitement et tout fonctionne parfaitement', '600-cbr', 1000, 2, 2, '2015-08-26 08:02:21', '2015-08-27 15:08:59', 1),
-(6, 'XMAX ABS 125 ', 'Vends XMAX 125 ABS année 2012 (cause obtention permis moto) - 16 700 kms avec jupe de protection,top case, poignées chauffantes et support chargeur GPS ', 'yamaha-xmax-125-abs', 2990, 4, 2, '2015-08-26 08:02:21', '2015-08-27 22:56:40', 1),
+(6, 'XMAX ABS 125 ', 'Vends XMAX 125 ABS année 2012 (cause obtention permis moto) - 16 700 kms avec jupe de protection,top case, poignées chauffantes et support chargeur GPS ', 'yamaha-xmax-125-abs', 2990, 2, 2, '2015-08-26 08:02:21', '2015-08-28 07:18:10', 1),
 (7, 'SONY VAIO I CORE 7', 'PC Portable Sony VAIO Haut de gamme I7 SVS1311D4E\r\nPc remis à neuf par un professionnel et près à l''emploi.\r\nIl fonctionne très bien sous windows 7 64Bits Originale\r\nJe rajoute le pack office 2007 et l''antivirus\r\nAinsi que les logiciels: VLC, Adobe reader DC, Google Chrome, 7Zip.\r\nExcellent confort d''utilisation.', 'sony-vaio', 600, 12, 3, '2015-08-26 08:12:58', NULL, 1),
 (8, 'Apple iMac Intel Quad Core i5 à 2,66 GHz 27', 'vend Imac bon état général.\r\nDatant de 2009 il a été amélioré via l''augmentation de la mémoire vive à 8Go (au lieu de 4)\r\nDéfaut : le lecteur CD n''est plus fonctionnel ', 'apple-imac-intel-core-2', 1000, 4, 3, '2015-08-26 08:12:58', NULL, 1),
 (9, 'Samsung s4', 'Bonjour je mais en vente mon Samsung s4 encore GARANTIE 1moi facture avec , en très bonne état pas de rayure sur l''écran.\r\n\r\nchargeur fournis avec chargeur neuf encore dans sa boite .\r\n\r\nemei du téléphone disponible sur demande .\r\n\r\n190euro prix fixe .\r\ncordialement . ', 'samsung-s4', 190, 20, 4, '2015-08-26 08:18:01', NULL, 1),
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
   `montant_total` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `commandes`
@@ -108,7 +108,8 @@ INSERT INTO `commandes` (`id`, `user_id`, `date_achat`, `rue`, `code_postal`, `v
 (2, 2, '2015-08-27 13:51:13', '10, avenue de chateau', '94300', 'vincennes', 'Escalier B', NULL, 12350),
 (3, 2, '2015-08-27 14:06:44', '15, rue de paris', '93100', 'Montreuil', 'Esacalier C', NULL, 4790),
 (4, 2, '2015-08-27 15:08:59', '4, rue de paris', '75005', 'paris', 'escalier F', NULL, 14350),
-(5, 2, '2015-08-27 22:56:40', '12 boulevard de Vincennes', '94120', 'Fontenay-sous-bois', '', NULL, 5980);
+(5, 2, '2015-08-27 22:56:40', '12 boulevard de Vincennes', '94120', 'Fontenay-sous-bois', '', NULL, 5980),
+(6, 2, '2015-08-28 07:18:09', '14, rue de paris', '75001', 'paris', 'escalier b', NULL, 5980);
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `lignes_commandes` (
   PRIMARY KEY (`id`),
   KEY `commande_id` (`commande_id`,`article_id`),
   KEY `article_id` (`article_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `lignes_commandes`
@@ -192,7 +193,8 @@ INSERT INTO `lignes_commandes` (`id`, `commande_id`, `article_id`) VALUES
 (3, 3, 10),
 (4, 4, 1),
 (5, 4, 5),
-(6, 5, 6);
+(6, 5, 6),
+(7, 6, 6);
 
 -- --------------------------------------------------------
 
